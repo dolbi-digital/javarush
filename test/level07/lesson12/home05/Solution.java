@@ -18,9 +18,15 @@ public class Solution
     {
         for (int i=30;i>=0;i--)
         {
-            System.out.println(i);
+            try
+            {
+                System.out.println(i);
+                Thread.sleep(100);
+            }
+                catch(InterruptedException e)
+                {
 
-            //Написать тут ваш код
+                }
         }
 
         System.out.println("Бум!");

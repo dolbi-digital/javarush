@@ -14,14 +14,27 @@ public class Solution
 {
     public static void main(String[] args) throws Exception {
         //read strings and init ArrayList list here - считать строки с консоли и объявить ArrayList list тут
+        ArrayList<String> list = new ArrayList<String>();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        for(int i = 0; i < 10; i++){
+            list.add(reader.readLine());
+        }
+
+
 
         ArrayList<String> result = doubleValues(list);
 
-        //print result - вывести на экран result
+        for(String s: result){
+            System.out.println(s);
+        }
     }
 
     public static ArrayList<String> doubleValues(ArrayList<String> list) {
-        // add your code here - добавь код тут
-        return null;
+        ArrayList<String> newlist = new ArrayList<String>();
+        for(int i = 0; i < list.size(); i++){
+            newlist.add(list.get(i));
+            newlist.add(list.get(i));
+        }
+        return newlist;
     }
 }

@@ -28,9 +28,9 @@ public class Solution
         BufferedReader bis = new BufferedReader(new InputStreamReader(System.in));
 
         ArrayList<String> list = new ArrayList<String>();
-        list.add("роза"); //0
-        list.add("лира"); //1
-        list.add("лоза"); //2
+        list.add(bis.readLine()); //0
+        list.add(bis.readLine()); //1
+        list.add(bis.readLine()); //2
         list = fix(list);
 
         for (String s : list)
@@ -40,17 +40,20 @@ public class Solution
     }
 
     public static ArrayList<String> fix(ArrayList<String> list) {
-        for (int i=0; i<list.size(); i++)
+        ArrayList<String> res = new ArrayList<String>();
+        for (String s : list)
         {
-  //          if(list.contains("р") && list.contains("л"))
-   //             System.out.println();
-            if(list.contains("р"))
-                list.remove(i);
-
-            if(list.contains("л"))
-                list.add(list.get(i));
-
+            if(s.contains("р") && s.contains("л")){
+                res.add(s);
+            } else if(s.contains("р")){
+                //NOP
+            } else if(s.contains("л")){
+                res.add(s);
+                res.add(s);
+            } else {
+                res.add(s);
+            }
         }
-        return list;
+        return res;
     }
 }

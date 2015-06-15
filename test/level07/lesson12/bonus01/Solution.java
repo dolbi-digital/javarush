@@ -25,7 +25,7 @@ public class Solution
 
             if (name.isEmpty()) break;
 
-            Cat cat = new Cat("vasya", 6, 5, 22);
+            Cat cat = new Cat(name);
             CATS.add(cat);
         }
 
