@@ -25,7 +25,11 @@ public class Solution
 
             if (name.isEmpty()) break;
 
-            Cat cat = new Cat(name);
+            int age = Integer.parseInt(reader.readLine());
+            int w = Integer.parseInt(reader.readLine());
+            int t = Integer.parseInt(reader.readLine());
+
+            Cat cat = new Cat(name, age, w, t);
             CATS.add(cat);
         }
 
