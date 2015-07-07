@@ -16,9 +16,13 @@ public class Solution
 
     public static ArrayList<String>[] createList()
     {
-        //Напишите тут ваш код
-
-        return null;
+        ArrayList<String>[] list = new ArrayList[10];
+        for(int i=0; i<list.length; i++)
+        {
+            list[i] = new ArrayList<String>();
+            list[i].add("dasfas");
+        }
+        return list;
     }
 
     public static void printList(ArrayList<String>[] arrayOfStringList)
