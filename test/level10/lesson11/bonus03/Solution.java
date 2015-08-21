@@ -33,20 +33,8 @@ public class Solution
         System.out.println(array[10]);
     }
 
-    public static int[] sort(int[] array)
+    public static void sort(int[] array)
     {
-        for(int j=array.length-1; j>0; j--)
-        {
-            for(int i=0; i<j; i++)
-            {
-                if(array[i]>array[i+1])
-                {
-                    int temp = array[i];
-                    array[i] = array[i+1];
-                    array[i+1] = temp;
-                }
-            }
-        }
-        return array;
+        //Напишите тут ваш код
     }
 }
