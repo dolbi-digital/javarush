@@ -15,7 +15,7 @@ public class Solution
         System.out.println(new Today(WeatherType.FROZEN));
     }
 
-    static class Today implements Weather, WeatherType
+    static class Today implements Weather
     {
         private String type;
 
@@ -31,9 +31,8 @@ public class Solution
         }
 
         @Override
-        public String getWeatherType()
-        {
-            return null;
+        public String getWeatherType() {
+            return type;
         }
     }
 }
