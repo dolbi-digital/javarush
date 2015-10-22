@@ -16,6 +16,15 @@ public class Solution
     public static void main(String[] args) throws Exception
     {
         //Add your code here
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String catName = null;
+        do{
+            catName = reader.readLine();
+            if(catName.equals(""))
+                break;
+            Cat cat = CatFactory.getCatByKey(catName);
+            System.out.println(cat.toString());
+        }while(!catName.equals(""));
     }
 
     static class CatFactory

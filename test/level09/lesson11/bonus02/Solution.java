@@ -14,19 +14,30 @@ public class Solution
     public static void main(String[] args) throws IOException
     {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        FileInputStream fileInputStream = null;
+        FileOutputStream fileOutputStream = null;
 
-        String sourceFileName = reader.readLine();
+        while (true)
+        {
+            try
+            {
+                String sourceFileName = reader.readLine();
+                fileInputStream = new FileInputStream(sourceFileName);
+                break;
+            }
+            catch (FileNotFoundException e)
+            {
+                System.out.println("Файл не существует.");
+            }
+        }
         String destinationFileName = reader.readLine();
-
-        FileInputStream fileInputStream = new FileInputStream(sourceFileName);
-        FileOutputStream fileOutputStream = new FileOutputStream(destinationFileName);
+        fileOutputStream = new FileOutputStream(destinationFileName);
 
         while (fileInputStream.available() > 0)
         {
             int data = fileInputStream.read();
             fileOutputStream.write(data);
         }
-
         fileInputStream.close();
         fileOutputStream.close();
     }
