@@ -1,8 +1,6 @@
 package com.javarush.test.level08.lesson08.task05;
 
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /* Удалить людей, имеющих одинаковые имена
@@ -14,29 +12,24 @@ public class Solution
 {
     public static HashMap<String, String> createMap()
     {
-        HashMap<String, String> map = new HashMap<String, String>();
-        map.put("surname1", "name1");
-        map.put("surname2", "name2");
-        map.put("surname3", "name3");
-        map.put("surname4", "name4");
-        map.put("surname5", "name5");
-        map.put("surname1", "name1");
-        map.put("surname1", "name1");
-        map.put("surname1", "name1");
-        map.put("surname1", "name1");
-        map.put("surname1", "name1");
-
-        return map;
+        //напишите тут ваш код
+        HashMap<String, String> hashMap = new HashMap<String, String>();
+        hashMap.put("Литвиненко", "Сергей");
+        hashMap.put("Порошенко", "Петр");
+        hashMap.put("Яценюк", "Арсений");
+        hashMap.put("Литвиненко2", "Сергей");
+        hashMap.put("Литвиненко3", "Сергей");
+        hashMap.put("Литвиненко4", "Сергей");
+        hashMap.put("Литвиненко5", "Сергей");
+        hashMap.put("Ярош", "Дмитрий");
+        hashMap.put("Литвиненко6", "Сергей");
+        hashMap.put("Литвиненко7", "Сергей");
+        return hashMap;
     }
 
     public static void removeTheFirstNameDuplicates(HashMap<String, String> map)
     {
-        Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
-
-        while (iterator.hasNext())
-        {
-
-        }
+        //напишите тут ваш код
 
     }
 
@@ -48,5 +41,9 @@ public class Solution
             if (pair.getValue().equals(value))
                 map.remove(pair.getKey());
         }
+    }
+
+    public static void  main(String[] args){
+        System.out.println(createMap());
     }
 }

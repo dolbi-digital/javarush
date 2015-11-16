@@ -14,7 +14,7 @@ public class Solution {
     static{
          class Cat{
             String name = "Пушок";
-        }
+         }
         Cat myCat = new Cat();
         cat = myCat;
         System.out.println(myCat.name);
