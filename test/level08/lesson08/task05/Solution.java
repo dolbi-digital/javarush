@@ -12,7 +12,6 @@ public class Solution
 {
     public static HashMap<String, String> createMap()
     {
-        //напишите тут ваш код
         HashMap<String, String> hashMap = new HashMap<String, String>();
         hashMap.put("Литвиненко", "Сергей");
         hashMap.put("Порошенко", "Петр");
@@ -25,6 +24,7 @@ public class Solution
         hashMap.put("Литвиненко6", "Сергей");
         hashMap.put("Литвиненко7", "Сергей");
         return hashMap;
+
     }
 
     public static void removeTheFirstNameDuplicates(HashMap<String, String> map)

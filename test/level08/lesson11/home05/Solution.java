@@ -23,7 +23,16 @@ public class Solution
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String s = reader.readLine();
 
-        //напишите тут ваш код
+        char [] charArray = s.toCharArray();
+        charArray[0] = Character.toUpperCase(charArray[0]);
+
+        for(int i = 0; i < charArray.length; i++){
+            if(charArray[i] == ' '){
+                charArray[i+1] = Character.toUpperCase(charArray[i+1]);
+            }
+            System.out.print(charArray[i]);
+        }
+
     }
 
 

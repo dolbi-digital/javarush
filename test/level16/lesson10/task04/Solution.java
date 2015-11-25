@@ -12,15 +12,19 @@ public class Solution {
         t.start();
         Thread.sleep(3000);
         ourInterruptMethod();
+
     }
 
-    public static void ourInterruptMethod() throws InterruptedException {
-        throw new Error();
+    public static void ourInterruptMethod() {
+        //Add your code here - добавьте код тут
+        TestThread.cancel = true;
+
     }
 
     public static class TestThread implements Runnable {
+        public static boolean cancel = false;
         public void run() {
-            while(true) {
+            while(!cancel) {
                 try {
                     System.out.println("he-he");
                     Thread.sleep(500);
