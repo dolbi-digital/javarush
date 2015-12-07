@@ -5,8 +5,8 @@ import java.util.List;
 
 /* Заметки
 1. Класс Note будет использоваться нитями.
-2. Создай public static нить NoteThread, которая в методе run 1000 раз (index = 0-999) сделает следующие
-действия:
+2. Создай public static нить NoteThread (Runnable не является нитью),
+которая в методе run 1000 раз (index = 0-999) сделает следующие действия:
 2.1. используя метод addNote добавит заметку с именем [getName() + "-Note" + index], например, при index=4
 "Thread-0-Note4"
 2.2. используя метод removeNote удалит заметку
@@ -34,5 +34,17 @@ public class Solution {
                 System.out.println("Нить [" + threadName + "] удалила чужую заметку [" + note + "]");
             }
         }
+    }
+
+    public static class NoteThread extends Thread{
+
+        @Override
+        public void run() {
+            for(int i=0; i<1000; i++){
+                Note.addNote(getName() + "-Note" + i);
+            }
+            Note.removeNote(getName());
+        }
+
     }
 }

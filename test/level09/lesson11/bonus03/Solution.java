@@ -51,14 +51,6 @@ public class Solution
     public static void sort(String[] array)
     {
         //напишите тут ваш код
-        for(String string : array){
-            if(isNumber(string)){
-
-            }
-            else{
-                isGreaterThan(string, string+1);
-            }
-        }
     }
 
     //Метод для сравнения строк: 'а' больше чем 'b'

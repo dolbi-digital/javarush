@@ -11,7 +11,7 @@ public class Solution {
         this.name = name;
     }
 
-    private String getName() {
+    public String getName() {
         return name;
     }
 
@@ -24,6 +24,6 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        new Solution("main").sout();
+        new Solution("sout").sout();
     }
 }
