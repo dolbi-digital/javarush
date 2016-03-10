@@ -39,7 +39,13 @@ public class Solution
         HashMap<String, Integer> result = new HashMap<String, Integer>();
 
         //напишите тут ваш код
-
+        for (String word : list) {
+            if (result.containsKey(word)) {
+                result.put(word, result.get(word) + 1);
+            } else {
+                result.put(word, 1);
+            }
+        }
 
         return result;
     }
