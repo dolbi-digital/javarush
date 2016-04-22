@@ -19,8 +19,6 @@ public class Solution {
                 throw new DownloadException();
             }
         }
-
-
     }
 
     public static class DownloadException extends Exception{

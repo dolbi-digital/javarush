@@ -14,8 +14,8 @@ public class Solution
         String number = null;
         int sum = 0;
         int a = 0;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while(true){
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             number = reader.readLine();
             if(number.equals("сумма"))
             {

@@ -17,7 +17,7 @@ public class Solution {
         //вы можете найти your_file_name.tmp в папке TMP или исправьте outputStream/inputStream в соответствии с путем к вашему реальному файлу
         try {
 
-            File your_file_name = File.createTempFile("your_file_name", null);
+            File your_file_name = File.createTempFile("C:/your_file_name", null);
             OutputStream outputStream = new FileOutputStream(your_file_name);
             InputStream inputStream = new FileInputStream(your_file_name);
 
@@ -28,12 +28,9 @@ public class Solution {
             Human somePerson = new Human();
             somePerson.load(inputStream);
             //check here that ivanov equals to somePerson - проверьте тут, что ivanov и somePerson равны
-            if(ivanov.equals(somePerson)){
-                System.out.println("Равны!");
-            }
-            else{
-                System.out.println("Не равны!");
-            }
+            System.out.println(ivanov.name + " " + ivanov.assets.get(0).getName() + " " + ivanov.assets.get(1).getName());
+            System.out.println(somePerson.name + " " + somePerson.assets.get(0).getName() + " " + somePerson.assets.get(1).getName());
+            System.out.println(ivanov.equals(somePerson)?true:false);
             inputStream.close();
 
         } catch (IOException e) {
@@ -63,17 +60,46 @@ public class Solution {
         public void save(OutputStream outputStream) throws Exception {
             //implement this method - реализуйте этот метод
             PrintWriter printWriter = new PrintWriter(outputStream);
-            printWriter.println(name);
-            printWriter.println(assets);
-            printWriter.flush();
+            String hasName = (name != null) ? "yes" : "no";
+            printWriter.println(hasName);
+            if("yes".equals(hasName)){
+                printWriter.println(name);
+                if(assets.size() > 0){
+                    for(int i = 0; i < assets.size(); i++){
+                        printWriter.println(assets.get(i).getName());
+                    }
+                }
+            }
+            printWriter.close();
         }
 
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            name = reader.readLine();
-
-
+            String hasName = reader.readLine();
+            if("yes".equals(hasName)){
+                name = reader.readLine();
+                String assetName;
+                while((assetName = reader.readLine()) != null){
+                    assets.add(new Asset(assetName));
+                }
+            }
         }
+
+        @Override
+        public boolean equals(Object obj)
+        {
+            if (this == obj) return true;
+            if (obj == null || getClass() != obj.getClass()) return false;
+            Human human = (Human) obj;
+            if (!name.equals(human.name)) return false;
+            if (assets.size() != human.assets.size()) return false;
+            for (int i = 0; i <assets.size(); i++) {
+                if (!assets.get(i).getName().equals(human.assets.get(i).getName())) return false;
+                if (assets.get(i).getPrice() != human.assets.get(i).getPrice()) return false;
+            }
+            return true;
+        }
+
     }
 }

@@ -17,7 +17,45 @@ import java.util.Map;
 public class Solution {
     public static Map<String, String> countries = new HashMap<String, String>();
 
-    public static class IncomeDataAdapter {
+    static {
+        countries.put("UA", "Ukraine");
+        countries.put("RU", "Russia");
+        countries.put("CA", "Canada");
+    }
+
+    public static class IncomeDataAdapter implements Customer, Contact{
+
+        private IncomeData incomeData;
+
+        public IncomeDataAdapter(IncomeData incomeData){
+            this.incomeData = incomeData;
+        }
+
+        @Override
+        public String getCompanyName() {
+            return incomeData.getCompany();
+        }
+
+        @Override
+        public String getCountryName() {
+            return countries.get(incomeData.getCountryCode());
+        }
+
+        @Override
+        public String getName() {
+            return String.format("%s, %s", incomeData.getContactLastName(), incomeData.getContactFirstName());
+        }
+
+        @Override
+        public String getPhoneNumber()
+        {
+            String m = String.format("+%d(%2$s)%3$s-%4$s-%5$s",incomeData.getCountryPhoneCode(),
+                    String.format("%010d", incomeData.getPhoneNumber()).substring(0, 3),
+                    String.format("%010d", incomeData.getPhoneNumber()).substring(3, 6),
+                    String.format("%010d", incomeData.getPhoneNumber()).substring(6, 8),
+                    String.format("%010d", incomeData.getPhoneNumber()).substring(8));
+            return m;
+        }
     }
 
     public static interface IncomeData {
@@ -44,5 +82,9 @@ public class Solution {
         String getName();               //example Ivanov, Ivan
 
         String getPhoneNumber();        //example +38(050)123-45-67
+    }
+
+    public static void main(String[] args){
+
     }
 }

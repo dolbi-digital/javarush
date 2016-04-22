@@ -1,9 +1,8 @@
 package com.javarush.test.level20.lesson02.task02;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable{
+public class User {
     private String firstName;
     private String lastName;
     private Date birthDate;

@@ -1,7 +1,6 @@
 package com.javarush.test.level18.lesson03.task03;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -32,9 +31,11 @@ public class Solution {
         for (int i=0; i<list.size(); i++)
         {
             count[i] = 0;
-            for (int j = 0; j < list.size();j++)
+            for (int j = 0; j < list.size(); j++)
             {
-                if (list.get(i)==list.get(j)) count[i]++;
+                if (list.get(i)==list.get(j)){
+                    count[i]++;
+                }
             }
         }
 //определяем минимум
@@ -46,7 +47,9 @@ public class Solution {
 //собираем байты с минимумом использования и без повторов
         for (int i = 0; i<list.size(); i++)
         {
-            if (!reslist.contains(list.get(i))&&count[i]==max) reslist.add(list.get(i));
+            if (!reslist.contains(list.get(i))&&count[i]==max) {
+                reslist.add(list.get(i));
+            }
         }
         for (int y: reslist)
         {

@@ -27,34 +27,33 @@ public class Solution
         char[] abcArray = abc.toCharArray();
 
         ArrayList<Character> alphabet = new ArrayList<Character>();
-        for (int i = 0; i < abcArray.length; i++)
-        {
+        for (int i = 0; i < abcArray.length; i++) {
             alphabet.add(abcArray[i]);
         }
 
         //ввод строк
         ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < 2; i++)
-        {
+        for (int i = 0; i < 10; i++) {
             String s = reader.readLine();
             list.add(s.toLowerCase());
         }
 
-        //напишите тут ваш код
-        for(int i = 0; i < alphabet.size(); i++){
-            System.out.println(count(list, alphabet.get(i)));
+        //Напишите тут ваш код
+        int[] counter = new int[alphabet.size()];
 
-        }
-    }
-
-    public static int count(ArrayList<String> list, char a){
-        int count = 0;
-        for(int i = 0; i < list.size(); i++){
-            if(list.get(i).charAt(i)==a){
-                count++;
+        for (int i = 0; i < list.size(); i++) {
+            char[] string = list.get(i).toCharArray();
+            for (int j = 0; j < alphabet.size(); j++) {
+                for (int k = 0;k < string.length; k++) {
+                    if (alphabet.get(j)==string[k]) {
+                        counter[j]++;
+                    }
+                }
             }
         }
-        return count;
-    }
 
+        for (int i=0;i<alphabet.size();i++) {
+            System.out.println(alphabet.get(i) + " " + counter[i]);
+        }
+    }
 }
