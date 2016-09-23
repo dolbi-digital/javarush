@@ -9,6 +9,7 @@ public class Solution {
         System.out.println(Alphabet.A.getLetterPosition());
         System.out.println(Alphabet.G.getLetterPosition());
         System.out.println(Alphabet.M.getLetterPosition());
+        System.out.println(Alphabet.Z.getLetterPosition());
     }
 
     public enum Alphabet {

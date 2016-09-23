@@ -36,7 +36,7 @@ public class Solution {
 
         protected String[] loadWheelNamesFromDB() {
             //this method returns mock data
-            return new String[]{"FRONT_LEFT", "FRONT_RIGHT1", "BACK_LEFT", "BACK_RIGHT"};
+            return new String[]{"FRONT_LEFT", "FRONT_RIGHT", "BACK_LEFT", "BACK_RIGHT"};
         }
     }
 
