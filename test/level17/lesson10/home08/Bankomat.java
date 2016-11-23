@@ -33,7 +33,7 @@ public class Bankomat {
         @Override
         public void run() {
             while (!isStopped) {
-                account.deposit("1000");            //кладем на счет
+                account.deposit("2000");            //кладем на счет
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {

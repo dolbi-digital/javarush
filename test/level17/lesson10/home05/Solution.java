@@ -11,21 +11,15 @@ public class Solution {
     public Solution append(CharSequence s) {
 
             if (s == null) {
-
                     s = "null";
-
             }
 
             if (s instanceof String) {
-
                     return this.append((String) s);
-
             }
 
             if (s instanceof Solution) {
-
                     return this.appendThis((Solution) s);
-
             }
 
         return this.append(s);

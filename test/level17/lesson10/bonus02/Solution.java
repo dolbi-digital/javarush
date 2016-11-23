@@ -1,5 +1,6 @@
 package com.javarush.test.level17.lesson10.bonus02;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,68 +34,90 @@ id соответствует индексу в списке
 */
 
 public class Solution {
-    public static volatile List<Person> allPeople = new ArrayList<Person>();
+    public static List<Person> allPeople = new ArrayList<Person>();
     static {
         allPeople.add(Person.createMale("Иванов Иван", new Date()));  //сегодня родился    id=0
         allPeople.add(Person.createMale("Петров Петр", new Date()));  //сегодня родился    id=1
     }
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws ParseException {
+        //start here - начни тут
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         Person person = null;
 
-        if (args[0].equals("-c")) {
-            for(int i = 1; i < args.length; i=i+3){
-                if (args[i+1].equals("м"))
-                    person = Person.createMale(args[i], new SimpleDateFormat("dd/MM/yyyy").parse(args[i+2]));
-                else if (args[i+1].equals("ж"))
-                    person = Person.createFemale(args[i], new SimpleDateFormat("dd/MM/yyyy").parse(args[i+2]));
-                allPeople.add(person);
-                System.out.println(allPeople.indexOf(person));
+        // CREATE ==================================================================================================================
+
+        if(args[0].equals("-c")){
+            synchronized (Solution.class) {
+                for(int i=1; i<args.length; i=i+3) {
+                    if (args[i+1].equals("м")) {
+                        person = Person.createMale(args[i], format.parse(args[i+2]));
+                    } else if (args[i+1].equals("ж")) {
+                        person = Person.createMale(args[i], format.parse(args[i+2]));
+                    }
+                    allPeople.add(person);
+                    System.out.println(allPeople.indexOf(person));
+                }
             }
         }
 
-        else if (args[0].equals("-u")) {
-            for(int i = 1; i < args.length; i=i+4){
-                int id = Integer.parseInt(args[i]);
-                allPeople.get(id).setName(args[i+1]);
-                allPeople.get(id).setBirthDay(new SimpleDateFormat("dd/MM/yyyy").parse(args[i+3]));
-                if (args[i+2].equals("-м"))
-                    allPeople.get(id).setSex(Sex.MALE);
-                else if (args[i+2].equals("ж"))
-                    allPeople.get(id).setSex(Sex.FEMALE);
+        // UPDATE ==================================================================================================================
+        // -u id name sex bd
+
+        else if(args[0].equals("-u")){
+            synchronized (Solution.class) {
+                for(int i=1; i<args.length; i=i+4) {
+                    allPeople.get(Integer.parseInt(args[i])).setName(args[i+1]);
+                    if (args[i+2].equals("м")) {
+                        allPeople.get(Integer.parseInt(args[i])).setSex(Sex.MALE);
+                    }
+                    else if (args[i+2].equals("ж")) {
+                        allPeople.get(Integer.parseInt(args[i])).setSex(Sex.MALE);
+                    }
+                    allPeople.get(Integer.parseInt(args[i])).setBirthDay(format.parse(args[i+3]));
+                }
             }
         }
 
+        // DELETE ==================================================================================================================
 
-
-
-        else if (args[0].equals("-d")) {
-            for(int i = 1; i < args.length; i++){
-                int id = Integer.parseInt(args[i]);
-                person = allPeople.get(id);
-                person.setName(null);
-                person.setSex(null);
-                person.setBirthDay(null);
+        else if(args[0].equals("-d")){
+            synchronized (Solution.class) {
+                for(int i=1; i<args.length; i++){
+                    allPeople.get(Integer.parseInt(args[i])).setName(null);
+                    allPeople.get(Integer.parseInt(args[i])).setSex(null);
+                    allPeople.get(Integer.parseInt(args[i])).setBirthDay(null);
+                }
             }
-
         }
 
-        else if ((args[0].equals("-i"))) {
-            for(int i = 1; i < args.length; i++) {
-                int id = Integer.parseInt(args[i]);
-                person = allPeople.get(id);
-                String name = person.getName();
-                String sex;
-                if (person.getSex() == Sex.MALE)
-                    sex = "м";
-                else
-                    sex = "ж";
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
-                String date = simpleDateFormat.format(person.getBirthDay());
-                System.out.println(name + " " + sex + " " + date);
+        // INFO ====================================================================================================================
+
+        else if(args[0].equals("-i")){
+            synchronized (Solution.class) {
+                for(int i=1; i<args.length; i++){
+                    person = allPeople.get(Integer.parseInt(args[i]));
+                    String name = person.getName();
+                    String sex = "";
+
+                    if(person.getSex().equals(Sex.MALE)){
+                        sex = "м";
+                    }
+                    else if(person.getSex().equals(Sex.FEMALE)){
+                        sex = "ж";
+                    }
+
+                    SimpleDateFormat formatInfo = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+                    String date = formatInfo.format(person.getBirthDay());
+                    System.out.println(name + " " + sex + " " + date);
+                }
             }
+        }
 
+        // PRINT PERSONS ==========================================================================================================
 
+        for(Person pers: allPeople){
+            System.out.println(pers.getName() + " " + pers.getSex() + " " + pers.getBirthDay());
         }
     }
 }

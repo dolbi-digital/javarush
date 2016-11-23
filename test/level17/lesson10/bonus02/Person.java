@@ -13,35 +13,35 @@ public class Person {
         this.birthDay = birthDay;
     }
 
-    public static Person createMale(String name, Date birthDay){
+    public synchronized static Person createMale(String name, Date birthDay){
         return new Person(name, Sex.MALE, birthDay);
     }
 
-    public static Person createFemale(String name, Date birthDay){
+    public synchronized static Person createFemale(String name, Date birthDay){
         return new Person(name, Sex.FEMALE, birthDay);
     }
 
-    public String getName() {
+    public synchronized String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public synchronized void setName(String name) {
         this.name = name;
     }
 
-    public Sex getSex() {
+    public synchronized Sex getSex() {
         return sex;
     }
 
-    public void setSex(Sex sex) {
+    public synchronized void setSex(Sex sex) {
         this.sex = sex;
     }
 
-    public Date getBirthDay() {
+    public synchronized Date getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(Date birthDay) {
+    public synchronized void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
     }
 }

@@ -30,7 +30,7 @@ public class BankAccount {
         System.out.println("Тратим " + money + ", на счету " + balance);
     }
 
-    public void deposit(String money) {
+    public synchronized void deposit(String money) {  // add synchronized
         deposit(new BigDecimal(money));
     }
 
